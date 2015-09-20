@@ -41,6 +41,7 @@
     </a>
     </li>
     {% endfor %}
+  </ul>
   {% endfor %}
 </div>
 
@@ -67,7 +68,7 @@
         <button class="btn1" onclick="input1hide();">取消</button>
     </form>
 </div>
-  <ul class="small-block-grid-2" style="padding-right: 10px;">
+  <ul class="small-block-grid-2" style="">
     <li class="rule">
       <a href="#" data-reveal-id="ruleModal">规则&奖品</a>
     </li>
@@ -84,6 +85,7 @@
   #vote_list {
     background: url(/static/vote/img/bg_2.jpg);
     background-size: 100%;
+    background-size: cover;
     padding-top: 25%;
     padding-left: 2%;
     padding-right: 2%;
@@ -97,6 +99,7 @@
     max-width: none;
     overflow: hidden;
     margin-bottom: 10px;
+    padding: 4px;
   }
   #vote_list li, #vote_list a, #vote_list img {
     width: 100%;
