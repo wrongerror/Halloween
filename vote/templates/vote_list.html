@@ -1,0 +1,279 @@
+{% extends "base.html" %}
+
+{% block index %}
+  <div id="page1">
+    <img id="bg_1" src="/static/vote/img/bg_1.png" style="width:100%">
+  </div>
+<script type="text/javascript">
+  if ((window.screen.height / window.screen.width)*3 > 5) {
+    $('#bg_1').css('height', ($(window).height()));
+  }
+</script>
+{% endblock%}
+
+{% block vote %}
+
+<div id="vote_list">
+  {% for production in productions %}
+  <ul class="clearing-thumbs clearing-feature " data-clearing>
+    <li class="clearing-featured-img">
+      <a class="th " href="{{ production.get_primary_image_url }}">
+        <img data-caption="" src="{{ production.get_primary_image_url }}">
+          <div class="vote_bottom">
+            <div class="number ">
+              <div class="index_num" style="height:16px;">
+                <p>{{ production.number }} {{ production.name }}</p>
+              </div>
+              <div class="vote_num" style="height:16px;">
+                <p>{{ production.get_vote_count }} 票</p>
+              </div>
+            </div>
+            <button class="vote " style="">
+              <p>投票</p>
+            </button>
+        </div>
+      </a>
+    </li>
+    {% for image in production.get_all_image_url %}
+    <li>
+    <a class="th" href="{{ image }}">
+      <img data-caption="" src="{{ image }}">
+    </a>
+    </li>
+    {% endfor %}
+  {% endfor %}
+</div>
+
+<div id="ruleModal" class="reveal-modal full" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" style="display: none">
+  <div style="padding-top: 1em;height:100%;">
+    <div style="height:50%">
+      <img src="/static/vote/img/rule.png" style="width:30%;">
+    </div>
+    <div style="height:50%">
+        <img src="/static/vote/img/jp.png" style="width:30%;">
+    </div>
+
+  </div>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>  
+
+
+
+
+<div class="footer" >
+  <div id="input1" style="display:none;">
+    <form class="f1 " onsubmit="return false;">
+        <input type="text" placeholder="万圣节" class="input1" style="margin:0;color:white;">
+        <button class="btn1" onclick="input1hide();">取消</button>
+    </form>
+</div>
+  <ul class="small-block-grid-2" style="padding-right: 10px;">
+    <li class="rule">
+      <a href="#" data-reveal-id="ruleModal">规则&奖品</a>
+    </li>
+    <li class="input">
+      <a  >搜索</a>
+    </li>
+  </ul>
+</div>
+
+<style type="text/css">
+  .th {
+    border: solid 6px #111010;
+  }
+  #vote_list {
+    background: url(/static/vote/img/bg_2.jpg);
+    background-size: 100%;
+    padding-top: 25%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 25%;
+    overflow: hidden;
+  }
+  #vote_list ul {
+    width: 50%;
+    position: relative;
+    float: left;
+    max-width: none;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  #vote_list li, #vote_list a, #vote_list img {
+    width: 100%;
+  }
+  #vote_list p {
+    font-size: .8em;
+  }
+  .vote_bottom {
+    height: 32px;
+    background: white;
+  }
+  .number {
+    width: 66%;
+    height: 32px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    color: black;
+    border-right: dotted 1px;
+  }
+  .number p {
+    color: black;
+  }
+  .vote {
+    width: 34%;
+    height: 32px;
+    color: white;
+    float: left;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    padding-top: 6px;
+    text-align: center;
+  }
+  .footer {
+    text-align: center;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+  }
+  .footer a {
+    color: white;
+  }
+  .footer li {
+    padding: 0;
+    font-size: 1.2em;
+  }
+  .rule {
+    background-color: #6c8baf;
+  }
+  .input {
+    background-color: #36557f;
+  }
+  #ruleModal {
+    background-color: black;
+    color: #ee8d73;
+  }
+  #ruleModal {
+    font-size: 2em;
+  }
+  .reveal-modal .close-reveal-modal {
+    font-size: 32px;
+    font-weight: normal;
+  }
+  input[type="text"] {
+    background-color: transparent;
+    border: none;
+  }
+  .input1, input[type="text"]:focus{
+      text-align: center;
+      vertical-align: center;
+      line-height: inherit;
+      font-size: 1em;
+      background: url("/static/vote/img/input_1.png") no-repeat;
+      background-size: 100%;
+      width: 100%;
+      color: white;
+      -webkit-appearance: none;
+      outline: none;
+      border: none;
+  }
+  .btn1{
+      position: absolute;
+      line-height: inherit;
+      font-size: 1em;
+      -webkit-appearance: none;
+      background: transparent;
+      color:white;
+      border: none;
+      outline: none;
+      display: block;
+      margin: 0;
+      padding: 0;
+  }
+  .f1{
+      position: relative;
+  }
+</style>
+<script>
+    $().ready(function () {
+        var scale=$(window).width()/320;
+        if ((window.screen.height / window.screen.width)*3 < 4.5) {
+          $('.btn1').css('right',16*scale);
+          $('.btn1').css('bottom',20*scale);
+        }
+        else {
+          $('.btn1').css('right',8*scale);
+          $('.btn1').css('bottom',10*scale);
+        }
+        $('.input1').css('height',98*scale);
+        $('.input1').css('padding',(58*scale)+'px '+(50*scale)+'px '+(6*scale)+'px '+(62*scale)+'px');
+
+        $(window).scroll(function(){
+           var scrollTop = $(this).scrollTop();
+           var scrollHeight = $('body').height();
+           var windowHeight = $(this).height();
+          if(scrollTop + windowHeight > scrollHeight){
+            $('.footer').show();
+          }
+          else {
+            $('.footer').hide();
+          }
+        });
+
+        $('.input').on("click", function() {
+          var attr = $('#input1').css('display')
+          if (attr == 'none') {
+            $('#input1').css('display', 'block');
+          }
+          else {
+            var value = $('.input1').val();
+            if (value) {
+              $('.clearing-thumbs').each(function() {
+                number_list = $(this).find('.index_num p').text().split(' ');
+                if ((value == number_list[0]) || (value == number_list[1])) {
+                  $(this).css('display', 'blcok');
+                }
+                else {
+                  $(this).css('display', 'none');
+                }
+              })              
+            }
+            else {
+              $('.clearing-thumbs').css('display', 'block');
+            }
+
+          }
+        });
+
+       $('.clearing-featured-img').on("click", function(){
+          var attr = $('.visible-img').css('display');
+          $('.vote_bottom').css('display', 'none');
+       })
+
+      
+      $('.clearing-close').on("click", function(){
+          $('.vote_bottom').css('display', 'block');
+       })
+
+       $('.vote_bottom').on("click", function() {
+          event.preventDefault();
+          event.stopPropagation();
+       });
+
+      $('.vote').on("click", function(){
+        $('.vote').css('background-color', '#656667');
+      });
+
+    });
+
+function input1hide(){
+  //event.preventDefault();
+  $('#input1').hide();
+}
+
+</script>
+{% endblock %}

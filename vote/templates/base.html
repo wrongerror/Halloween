@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset='UTF-8'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/vote/css/normalize.css" />
+    <link rel="stylesheet" href="/static/vote/css/foundation.min.css" />
+    <script src="/static/vote/js/vendor/jquery.js"></script>
+    <script src="/static/vote/js/vendor/modernizr.js"></script>
+    <script src="/static/vote/js/vendor/fastclick.js"></script>
+    <script src="/static/vote/js/vendor/jquery.cookie.js"></script>
+    <script src="/static/vote/js/foundation.min.js"></script>
+</head>
+
+<body>
+    <div id="index">
+        {% block index %}
+        {% endblock %}
+    </div>
+
+    <div id="vote">
+        {% block vote %}{% endblock %}
+    </div>
+    <script>
+        $(document).foundation({
+            clearing : {
+                close_selectors : '.clearing-close',
+            },
+        });
+    </script>
+</body>
+</html>

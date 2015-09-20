@@ -1,0 +1,98 @@
+<style type="text/css">
+  .th {
+    border: solid 6px #111010;
+  }
+  #vote_list {
+    background: url(/static/vote/img/bg_2.jpg);
+    background-size: 100%;
+    padding-top: 25%;
+    padding-left: 2%;
+    padding-right: 2%;
+    overflow: hidden;
+  }
+  #vote_list ul {
+    width: 50%;
+    position: relative;
+    float: left;
+    max-width: none;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  #vote_list p {
+    font-size: .8em;
+  }
+  .vote_bottom {
+    height: 32px;
+    background: white;
+  }
+  .number {
+    width: 66%;
+    height: 32px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    color: black;
+    border-right: dotted 1px;
+  }
+  .number p {
+    color: black;
+  }
+  .vote {
+    width: 33%;
+    height: 32px;
+    float: left;
+    overflow: hidden;
+    padding-top: 6px;
+    text-align: center;
+  }
+  .footer {
+    text-align: center;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+  }
+  .footer a {
+    color: white;
+  }
+  .footer li {
+    padding: 0;
+  }
+  .rule {
+    background-color: #6c8baf;
+  }
+  .input {
+    background-color: #36557f;
+  }
+  .input1, input[type="text"]:focus{
+      text-align: center;
+      vertical-align: center;
+      line-height: inherit;
+      font-size: 1em;
+      background: url("/static/vote/img/input_1.png") no-repeat;
+      background-size: 100%;
+      width: 100%;
+      color: white;
+      -webkit-appearance: none;
+      outline: none;
+      border: none;
+  }
+  .btn1{
+      position: absolute;
+      line-height: inherit;
+      font-size: 1em;
+      -webkit-appearance: none;
+      background: transparent;
+      color:white;
+      border: none;
+      outline: none;
+      display: block;
+      margin: 0;
+      padding: 0;
+  }
+  .f1{
+      position: relative;
+  }
+</style>
