@@ -21,14 +21,14 @@
         <img data-caption="" src="{{ production.get_primary_image_url }}">
           <div class="vote_bottom">
             <div class="number ">
-              <div class="index_num" style="height:16px;">
+              <div class="index_num" style="height:20px;">
                 <p>{{ production.number }} {{ production.name }}</p>
               </div>
-              <div class="vote_num" style="height:16px;">
+              <div class="vote_num" style="height:20px;">
                 <p>{{ production.get_vote_count }} 票</p>
               </div>
             </div>
-            <button class="vote " style="">
+            <button class="vote " style="height:40px;">
               <p>投票</p>
             </button>
         </div>
@@ -85,7 +85,7 @@
   #vote_list {
     background: url(/static/vote/img/bg_2.jpg);
     background-size: 100%;
-    background-size: cover;
+    background-size: contian;
     padding-top: 25%;
     padding-left: 2%;
     padding-right: 2%;
@@ -93,7 +93,7 @@
     overflow: hidden;
   }
   #vote_list ul {
-    width: 50%;
+    width: 100%;
     position: relative;
     float: left;
     max-width: none;
@@ -108,12 +108,12 @@
     font-size: .8em;
   }
   .vote_bottom {
-    height: 32px;
+    height: 40px;
     background: white;
   }
   .number {
     width: 66%;
-    height: 32px;
+    height: 40px;
     float: left;
     overflow: hidden;
     text-align: center;
@@ -125,13 +125,13 @@
   }
   .vote {
     width: 34%;
-    height: 32px;
+    height: 40px;
     color: white;
     float: left;
     overflow: hidden;
     margin: 0;
     padding: 0;
-    padding-top: 6px;
+    padding-top: 10px;
     text-align: center;
   }
   .footer {
