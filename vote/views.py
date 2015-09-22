@@ -13,9 +13,6 @@ class VoteList(View):
 from django.http import HttpResponse
 class ProductionVote(View):
     def get(self, request, pk, *arg, **kwargs):
-        try:
-            production = Production.objects.get(pk=pk)
-            count = production.vote()
-            return HttpResponse(count)
-        except:
-            return HttpResponse(False)
+        production = Production.objects.get(pk=pk)
+        count = production.vote()
+        return HttpResponse(count)

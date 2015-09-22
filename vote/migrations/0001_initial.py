@@ -15,8 +15,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=32, verbose_name='\u4f5c\u8005\u540d\u79f0')),
-                ('phone', models.CharField(max_length=11, unique=True, null=True, verbose_name='\u624b\u673a\u53f7')),
-                ('address', models.CharField(max_length=256, null=True, verbose_name='\u5730\u5740')),
+                ('phone', models.CharField(max_length=11, unique=True, null=True, verbose_name='\u624b\u673a\u53f7', blank=True)),
+                ('address', models.CharField(max_length=256, null=True, verbose_name='\u5730\u5740', blank=True)),
                 ('date_created', models.DateTimeField(auto_now_add=True, verbose_name='Date created')),
                 ('date_updated', models.DateTimeField(auto_now=True, verbose_name='Date updated', db_index=True)),
             ],
@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('number', models.CharField(max_length=8, verbose_name='\u4f5c\u54c1\u7f16\u53f7')),
                 ('date_created', models.DateTimeField(auto_now_add=True, verbose_name='Date created')),
                 ('date_updated', models.DateTimeField(auto_now=True, verbose_name='Date updated', db_index=True)),
-                ('designer', models.ForeignKey(related_name='production', verbose_name='\u4f5c\u8005', to='vote.Designer')),
+                ('designer', models.ForeignKey(related_name='production', verbose_name='\u4f5c\u8005', to='vote.Designer', null=True)),
             ],
             options={
                 'verbose_name': '\u4f5c\u54c1',
@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
             name='Vote',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('openid', models.CharField(max_length=32, verbose_name='OpenId')),
+                ('openid', models.CharField(max_length=32, null=True, verbose_name='OpenId', blank=True)),
                 ('date_created', models.DateTimeField(auto_now_add=True, verbose_name='Date created')),
                 ('date_updated', models.DateTimeField(auto_now=True, verbose_name='Date updated', db_index=True)),
                 ('production', models.ForeignKey(related_name='votes', verbose_name=b'production', to='vote.Production')),

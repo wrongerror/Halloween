@@ -70,10 +70,7 @@ class Production(models.Model):
         return self.votes.count()
 
     def vote(self):
-        try:
-            Vote.objects.create(production=self)
-        except:
-            pass
+        Vote.objects.create(production=self)
         return self.get_vote_count()
 
 @python_2_unicode_compatible
