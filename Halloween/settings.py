@@ -85,7 +85,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'halloween',
-        'USER': 'wrongerror',
+        'USER': 'ubuntu',
         'ATOMIC_REQUESTS': True
     },
 }
