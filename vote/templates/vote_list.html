@@ -2,7 +2,7 @@
 
 {% block index %}
   <div id="page1">
-    <img id="bg_1" src="/static/vote/img/bg_1.png" style="width:100%">
+    <img id="bg_1" src="/static/vote/img/bg_1.jpg" style="width:100%">
   </div>
 <script type="text/javascript">
   if ((window.screen.height / window.screen.width)*3 > 5) {
@@ -28,7 +28,7 @@
                 <p>{{ production.get_vote_count }} 票</p>
               </div>
             </div>
-            <button class="vote " style="height:40px;">
+            <button class="vote " id="{{ production.id }}" style="height:40px;">
               <p>投票</p>
             </button>
         </div>
@@ -45,21 +45,47 @@
   {% endfor %}
 </div>
 
-<div id="ruleModal" class="reveal-modal full" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog" style="display: none">
-  <div style="padding-top: 1em;height:100%;">
+<div id="ruleModal" class=""  style="display: none">
+  <div>
     <div style="height:50%">
       <img src="/static/vote/img/rule.png" style="width:30%;">
+      <P style="">
+        <br>
+        1. 本次投票公平公开公正<br>
+        2. 每人每天有1次投票机会<br>
+        3. 设计师本人可将该页面分享拉票<br>
+        4. 作品按票数数值降序排列<br>
+        5. 投票时间：9月22日-10月1日<br>
+        6. 由于部分作品无设计图, 用文字代替<br>
+      </P>
     </div>
-    <div style="height:50%">
+    <div style="height:50%;">
         <img src="/static/vote/img/jp.png" style="width:30%;">
+        <P style="">
+          <br>
+          一等奖：1名, 奖金一万元+个人名义可获得30个入园名额+获奖证书<br>
+          二等奖：3名, 奖金三千元+个人名义可获得10个入园名额+获奖证书<br>
+          三等奖：6名, 奖金一千元+个人名义可获得5个入园名额+获奖证书<br>
+        </P>
     </div>
 
   </div>
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</div>  
+</div>
 
+<div class="pre" style="display:none;">
+  <img src="/static/vote/img/top.png">
+</div>
 
+<div class="next">
+  <img src="/static/vote/img/bottom.png">
+</div>
 
+<div class="top" style="display:none;">
+  <a href="#">
+    <img src="/static/vote/img/to_top.png">
+  </a>
+</div>
 
 <div class="footer" >
   <div id="input1" style="display:none;">
@@ -70,7 +96,7 @@
 </div>
   <ul class="small-block-grid-2" style="">
     <li class="rule">
-      <a href="#" data-reveal-id="ruleModal">规则&奖品</a>
+      <a href="#" >规则&奖品</a>
     </li>
     <li class="input">
       <a  >搜索</a>
@@ -83,10 +109,10 @@
     border: solid 6px #111010;
   }
   #vote_list {
-    background: url(/static/vote/img/bg_2.jpg);
+    background: url(/static/vote/img/bg_2.png);
     background-size: 100%;
     background-size: contian;
-    padding-top: 25%;
+    padding-top: 32%;
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 25%;
@@ -157,11 +183,20 @@
     background-color: #36557f;
   }
   #ruleModal {
+    font-size: 2em;
     background-color: black;
     color: #ee8d73;
+    position: fixed;
+    top: 4%;
+    left: 5%;
+    right: 5%;
+    bottom: 8%;
+    padding: 10px;
   }
-  #ruleModal {
-    font-size: 2em;
+  #ruleModal a {
+    position: absolute;
+    top: 0;
+    right: 5%;
   }
   .reveal-modal .close-reveal-modal {
     font-size: 32px;
@@ -200,9 +235,34 @@
   .f1{
       position: relative;
   }
+  .pre {
+    position: fixed;
+    top:0;
+    right: 46%;
+  }
+  .next {
+    position: fixed;
+    bottom: 0;
+    right: 46%;
+  }
+  .top {
+    width: 15%;
+    position: fixed;
+    right: 0%;
+    padding-right: 2%;
+    bottom: 8%;
+  }
 </style>
 <script>
     $().ready(function () {
+        if ($(window).width() >= 640) {
+          $('#ruleModal p').css('font-size', '1em');
+        }
+
+        if ($(window).width() <= 320) {
+          $('#ruleModal p').css('font-size', '12px');
+        }
+
         var scale=$(window).width()/320;
         if ((window.screen.height / window.screen.width)*3 < 4.5) {
           $('.btn1').css('right',16*scale);
@@ -221,9 +281,13 @@
            var windowHeight = $(this).height();
           if(scrollTop + windowHeight > scrollHeight){
             $('.footer').show();
+            $('.pre').show();
+            $('.top').show();
           }
           else {
             $('.footer').hide();
+            $('.pre').hide();
+            $('.top').hide();
           }
         });
 
@@ -252,25 +316,49 @@
           }
         });
 
+        $('.rule a').on('click', function() {
+          event.preventDefault();
+          $('#ruleModal').css('display', 'block');
+        });
+
+        $('.close-reveal-modal').on('click', function(){
+          $('#ruleModal').css('display', 'none');
+        });
+
        $('.clearing-featured-img').on("click", function(){
           var attr = $('.visible-img').css('display');
           $('.vote_bottom').css('display', 'none');
-       })
+       });
 
       
       $('.clearing-close').on("click", function(){
           $('.vote_bottom').css('display', 'block');
-       })
+       });
 
        $('.vote_bottom').on("click", function() {
           event.preventDefault();
           event.stopPropagation();
        });
 
-      $('.vote').on("click", function(){
-        $('.vote').css('background-color', '#656667');
-      });
+      var status = $.cookie('vote')
+        if (status) {
+          $('.vote').css('background-color', '#656667');
+          $('.vote').prop('disabled', true);
+      }
 
+      $('.vote').on("click", function(){
+        url = '/production/' + this.id + '/'
+        var el = this
+        $.get(url, function(result){
+          if (result) {
+            context = result + ' 票'
+            $(el).parent().find('.vote_num p').html(context);
+          }
+        });
+        $.cookie('vote', true, { expires: 1 });
+        $('.vote').css('background-color', '#656667');
+        $('.vote').prop('disabled', true);
+      });
     });
 
 function input1hide(){

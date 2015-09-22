@@ -24,8 +24,8 @@ from django.contrib.contenttypes.models import ContentType
 @python_2_unicode_compatible
 class Designer(models.Model):
     name = models.CharField(_("作者名称"), max_length=32)
-    phone = models.CharField(_("手机号"), max_length=11, unique=True, null=True)
-    address = models.CharField(_("地址"), max_length=256, null=True)
+    phone = models.CharField(_("手机号"), max_length=11, unique=True, null=True, blank=True)
+    address = models.CharField(_("地址"), max_length=256, null=True, blank=True)
     date_created = models.DateTimeField(_("Date created"), auto_now_add=True)
     date_updated = models.DateTimeField(_("Date updated"), auto_now=True, db_index=True)
 
@@ -40,7 +40,7 @@ class Designer(models.Model):
 class Production(models.Model):
     name = models.CharField(_("作品名"), max_length=32)
     number = models.CharField(_("作品编号"), max_length=8)
-    designer = models.ForeignKey('Designer', related_name="production", verbose_name=_("作者"))
+    designer = models.ForeignKey('Designer', related_name="production", verbose_name=_("作者"), null=True)
     date_created = models.DateTimeField(_("Date created"), auto_now_add=True)
     date_updated = models.DateTimeField(_("Date updated"), auto_now=True, db_index=True)
 
@@ -68,6 +68,13 @@ class Production(models.Model):
 
     def get_vote_count(self):
         return self.votes.count()
+
+    def vote(self):
+        try:
+            Vote.objects.create(production=self)
+        except:
+            pass
+        return self.get_vote_count()
 
 @python_2_unicode_compatible
 class ProductionImage(models.Model):
@@ -112,7 +119,7 @@ class ProductionImage(models.Model):
             image.save()
 
 class Vote(models.Model):
-    openid = models.CharField(_("OpenId"), max_length=32)
+    openid = models.CharField(_("OpenId"), max_length=32, null=True, blank=True)
     production = models.ForeignKey("Production", related_name="votes", verbose_name='production')
     date_created = models.DateTimeField(_("Date created"), auto_now_add=True)
     date_updated = models.DateTimeField(_("Date updated"), auto_now=True, db_index=True)

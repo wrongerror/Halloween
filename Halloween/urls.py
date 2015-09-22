@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url, patterns
 from django.contrib import admin
-from vote.views import VoteList
+from vote.views import VoteList, ProductionVote
 import settings
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^vote/', VoteList.as_view(), name='vote-list'),
+    url(r'^production/(?P<pk>\d+)/?', ProductionVote.as_view(), name="production-vote"),
 ]
 
 if settings.DEBUG:
