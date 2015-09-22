@@ -24,7 +24,7 @@ from django.contrib.contenttypes.models import ContentType
 @python_2_unicode_compatible
 class Designer(models.Model):
     name = models.CharField(_("作者名称"), max_length=32)
-    phone = models.CharField(_("手机号"), max_length=11, unique=True, null=True, blank=True)
+    phone = models.CharField(_("手机号"), max_length=11, null=True, blank=True)
     address = models.CharField(_("地址"), max_length=256, null=True, blank=True)
     date_created = models.DateTimeField(_("Date created"), auto_now_add=True)
     date_updated = models.DateTimeField(_("Date updated"), auto_now=True, db_index=True)
