@@ -13,6 +13,9 @@
 
 {% block vote %}
 
+<div>
+    <img id="title" src="/static/vote/img/tilte.png">
+  </div>
 <div id="vote_list">
   {% for production in productions %}
   <ul class="clearing-thumbs clearing-feature " data-clearing>
@@ -47,7 +50,7 @@
 
 <div id="ruleModal" class=""  style="display: none">
   <div>
-    <div style="height:50%">
+    <div style="height:60%">
       <img src="/static/vote/img/rule.png" style="width:30%;">
       <P style="">
         <br>
@@ -57,15 +60,15 @@
         4. 作品按票数数值降序排列<br>
         5. 投票时间：9月22日-10月1日<br>
         6. 由于部分作品无设计图, 用文字代替<br>
+        备注：获奖者需拟出详细的执行方案及物料清单，并现场协助完成设计作品<br>
       </P>
     </div>
-    <div style="height:50%;">
+    <div style="height:40%;">
         <img src="/static/vote/img/jp.png" style="width:30%;">
         <P style="">
           <br>
-          一等奖：1名, 奖金一万元+个人名义可获得30个入园名额+获奖证书<br>
-          二等奖：3名, 奖金三千元+个人名义可获得10个入园名额+获奖证书<br>
-          三等奖：6名, 奖金一千元+个人名义可获得5个入园名额+获奖证书<br>
+          优胜奖（票数最高者）：现金一万元+30个免费入园名额（万圣节期间）+获奖证书<br>
+          参与奖：可获得万圣节期间5个免费入园名额<br>
         </P>
     </div>
 
@@ -112,7 +115,7 @@
     background: url(/static/vote/img/bg_2.png);
     background-size: 100%;
     background-size: contian;
-    padding-top: 32%;
+    /*padding-top: 32%;*/
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 25%;
@@ -251,6 +254,39 @@
     right: 0%;
     padding-right: 2%;
     bottom: 8%;
+  }
+  .clearing-main-next {
+    right: 0;
+  }
+  .clearing-main-prev, .clearing-main-next {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 40px;
+  }
+  .clearing-main-prev.disabled, .clearing-main-next.disabled {
+    opacity: .3;
+  }
+  .clearing-main-prev {
+    left: 0;
+  }
+
+  .clearing-main-prev > span, .clearing-main-next > span {
+    border: solid 12px;
+    display: block;
+    height: 0;
+    position: absolute;
+    top: 50%;
+    width: 0;
+  }
+  .clearing-main-prev > span {
+    left: 5px;
+    border-color: transparent;
+    border-right-color: #CCCCCC;
+  }
+  .clearing-main-next > span {
+    border-color: transparent;
+    border-left-color: #CCCCCC;
   }
 </style>
 <script>
