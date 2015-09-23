@@ -9,7 +9,7 @@ class RedirectMiddleware(object):
         if not  (path == 'admin'):
             if 'HTTP_USER_AGENT' in request.META:
                 for user_agent_regex in Redirect_USER_AGENTS:
-                    if user_agent_regex.search(request.META['HTTP_USER_AGENT']):
+                    if not user_agent_regex.search(request.META['HTTP_USER_AGENT']):
                         return HttpResponse(
                             '<body style="margin-left:25%;margin-right:25%;marigin-top:80px;text-align: center; ">\
                             <div >\
