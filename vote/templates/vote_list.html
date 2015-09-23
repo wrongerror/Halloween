@@ -20,8 +20,10 @@
   {% for production in productions %}
   <ul class="clearing-thumbs clearing-feature " data-clearing>
     <li class="clearing-featured-img">
+      
       <a class="th " href="{{ production.get_primary_image_url }}">
         <img data-caption="" src="{{ production.get_primary_image_url }}">
+        <div class="play"><span></span></div>
           <div class="vote_bottom">
             <div class="number ">
               <div class="index_num" style="height:20px;">
@@ -255,10 +257,10 @@
     padding-right: 2%;
     bottom: 8%;
   }
-  .clearing-main-next {
+  .clearing-main-next, .play {
     right: 0;
   }
-  .clearing-main-prev, .clearing-main-next {
+  .clearing-main-prev, .clearing-main-next, .play {
     height: 100%;
     position: absolute;
     top: 0;
@@ -271,7 +273,7 @@
     left: 0;
   }
 
-  .clearing-main-prev > span, .clearing-main-next > span {
+  .clearing-main-prev > span, .clearing-main-next > span, .play span {
     border: solid 12px;
     display: block;
     height: 0;
@@ -284,9 +286,13 @@
     border-color: transparent;
     border-right-color: #CCCCCC;
   }
-  .clearing-main-next > span {
+  .clearing-main-next > span, .play span {
     border-color: transparent;
     border-left-color: #CCCCCC;
+  }
+  .play {
+    left: 50%;
+    top: -10%;
   }
 </style>
 <script>
@@ -395,6 +401,9 @@
         $('.vote').css('background-color', '#656667');
         $('.vote').prop('disabled', true);
       });
+      // $('.play').on('click', function(){
+      //   event.preventDefault();
+      // })
     });
 
 function input1hide(){
