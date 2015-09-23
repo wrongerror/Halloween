@@ -6,7 +6,7 @@ from models import Production
 class VoteList(View):
     def get(self, *arg, **kwargs):
         objects = Production.objects.all()
-        productions = sorted(objects, key=lambda x: x.get_vote_count)
+        productions = sorted(objects, key=lambda x: x.count, reverse=True)
         return render_to_response('vote_list.html', {
                 'productions': productions,
             })

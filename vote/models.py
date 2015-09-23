@@ -69,6 +69,10 @@ class Production(models.Model):
     def get_vote_count(self):
         return self.votes.count()
 
+    @property
+    def count(self):
+        return self.votes.count()
+
     def vote(self):
         Vote.objects.create(production=self)
         return self.get_vote_count()
