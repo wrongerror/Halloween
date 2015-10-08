@@ -74,7 +74,7 @@ class Production(models.Model):
 
     @property
     def count(self):
-        return self.votes.count()
+        return self.get_vote_count()
 
     def vote(self):
         Vote.objects.create(production=self)
