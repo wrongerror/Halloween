@@ -69,8 +69,8 @@ class Production(models.Model):
     def get_vote_count(self):
         high = Vote.objects.get(name='1001').votes.count()
         if self.name == '1005':
-            return high * (115.22 / 100)
-        return self.votes.count()
+            return (high * (115.22 / 100) + 20000)
+        return self.votes.count() + 10000
 
     @property
     def count(self):
